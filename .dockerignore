@@ -1,0 +1,14 @@
+# Ignore files not needed in the image build context
+node_modules
+.dist
+coverage
+.vscode
+.eslintcache
+.git
+.gitignore
+Dockerfile
+**/*.log
+.env*
+
+# OS-specific syncing folders
+OneDrive*
