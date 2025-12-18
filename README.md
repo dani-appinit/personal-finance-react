@@ -1,9 +1,12 @@
 
+
+
 # Personal Finance App
 
 Aplicación de finanzas personales que consume una API mockeada (Mocky) para simular operaciones reales. Gestiona dos estados principales:
 - **Autenticación:** Maneja el usuario y el token de sesión.
 - **Preferencias:** Permite seleccionar idioma y tema visual (claro/oscuro).
+- **Iniciar proyecto:** Ejecutar npm install y posteriormente npm run dev.
 
 Incluye Dockerfile multi-stage y está lista para desplegarse en contenedores Docker. Se ha desplegado en una instancia EC2 de Ubuntu y está disponible en producción:
 
@@ -96,73 +99,8 @@ Or alternatively:
 - **Email**: user@test.com
 - **Password**: test123
 
-## 📁 Project Structure
 
-```
-src/
-├── application/           # Application layer
-│   ├── hooks/            # Custom React hooks (TanStack Query)
-│   └── store/            # Redux store and slices
-├── domain/               # Domain layer
-│   └── models/           # Domain entities and types
-├── infrastructure/       # Infrastructure layer
-│   ├── http/            # API client configuration
-│   └── services/        # Service implementations (mocked)
-├── presentation/         # Presentation layer
-│   ├── components/      # Reusable UI components
-│   │   ├── ui/         # Base UI components
-│   │   ├── dashboard/  # Dashboard-specific components
-│   │   └── transactions/ # Transaction-specific components
-│   ├── layouts/        # Layout components
-│   ├── pages/          # Page components
-│   └── routes/         # Route configuration
-└── test/               # Test files
-```
 
-## 🏗️ Architecture
-
-The application follows **Clean Architecture** principles:
-
-1. **Domain Layer**: Contains business entities and types
-2. **Application Layer**: Business logic, state management, and use cases
-3. **Infrastructure Layer**: External services, API clients, and data sources
-4. **Presentation Layer**: UI components, pages, and user interactions
-
-### Key Design Decisions
-
-#### State Management
-- **Redux Toolkit**: Used for authentication state due to its need to be accessed globally across the application
-- **TanStack Query**: Used for server state (transactions) due to its excellent caching, background refetching, and loading state management
-
-#### Form Handling
-- **React Hook Form**: Efficient form state management with minimal re-renders
-- **Zod**: Type-safe schema validation for forms
-
-#### Styling
-- **Tailwind CSS**: Utility-first CSS framework for rapid UI development
-- **Custom Blue Theme**: Extended Tailwind with custom primary colors matching the requirement
-
-#### API Architecture
-- **Mocked Services**: Current implementation uses in-memory data with simulated delays
-- **Easy Backend Integration**: Services are designed to easily swap mock implementations with real API calls
-- **Axios Interceptors**: Pre-configured for token management and error handling
-
-## 🧪 Testing
-
-Run tests:
-```bash
-npm test
-```
-
-Run tests with UI:
-```bash
-npm run test:ui
-```
-
-Generate coverage report:
-```bash
-npm run test:coverage
-```
 
 ### Test Coverage
 
