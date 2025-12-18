@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { LoginPage } from '../LoginPage';
 
-// Mock translate to avoid Redux/provider wiring
 vi.mock('../../../shared/i18n/useTranslate', () => ({
   useTranslate: () => (key: string) => {
     const map: Record<string, string> = {
@@ -24,7 +23,6 @@ vi.mock('../../../shared/i18n/useTranslate', () => ({
   },
 }));
 
-// Mock useLoginMutation to control mutation behavior
 const mutateSpy = vi.fn();
 let mockIsPending = false;
 vi.mock('../hooks/useAuth', () => ({
@@ -55,7 +53,7 @@ describe('LoginPage', () => {
     const emailInput = screen.getByLabelText(/Email/i);
     const passwordInput = screen.getByLabelText(/Password/i);
 
-    await user.type(emailInput, 'not-an-email');
+    await user.type(emailInput, 'noValido');
     await user.type(passwordInput, '123');
 
     await user.click(screen.getByRole('button', { name: /Sign In/i }));

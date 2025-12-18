@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTheme } from '@mui/material/styles';
 import {
   Box,
   Typography,
@@ -34,6 +35,7 @@ import { FinancialSummary } from '../components/FinancialSummary';
 
 export const TransactionSection: React.FC = () => {
   const translate = useTranslate();
+  const theme = useTheme();
   const { showConfirm, showSuccess, showError } = useAlert();
   const [modalState, setModalState] = useState<{ isOpen: boolean; transaction?: Transaction }>({
     isOpen: false,
@@ -108,7 +110,14 @@ export const TransactionSection: React.FC = () => {
     <Box>
       {/* Header Section */}
       <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 4 }}>
-        <Typography variant="h4" fontWeight="bold">
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          sx={{
+            color: theme.palette.mode === 'dark' ? theme.palette.primary.light : theme.palette.primary.dark,
+            transition: 'color 0.2s',
+          }}
+        >
           {translate('dashboard.title')}
         </Typography>
         <Button

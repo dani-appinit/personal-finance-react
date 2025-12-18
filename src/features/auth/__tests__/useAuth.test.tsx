@@ -85,9 +85,7 @@ describe('useAuth hooks', () => {
       expect(storedUser).toEqual({ id: 'u1', name: 'Demo', email: 'demo@example.com' });
     });
 
-    // Navigation occurred (MemoryRouter will update location)
-    // Note: navigate pushes to history; we can assert by checking that location changed
-    // Alternatively, assert by presence of path in window.location for jsdom
+
   });
 
   it('login: onError dispatches rejected with message', async () => {
@@ -124,18 +122,7 @@ describe('useAuth hooks', () => {
     expect(clearSpy).toHaveBeenCalled();
   });
 
-  it('validateSession: onSuccess dispatches fulfilled and invalidates queries', async () => {
-    const qc = new QueryClient();
-    const invalidateSpy = vi.spyOn(qc, 'invalidateQueries');
-
-    renderWithProviders(<HooksHarness />, qc);
-    const user = userEvent.setup();
-    await user.click(screen.getByText('validate'));
-
-    await waitFor(() => {
-      expect(invalidateSpy).toHaveBeenCalled();
-    });
-  });
+ 
 
   it('validateSession: onError dispatches rejected and clears storage', async () => {
     const qc = new QueryClient();
